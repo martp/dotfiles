@@ -22,4 +22,4 @@
 # export PATH="$HOME/work/tools/bin:$PATH"
 
 # ── Machine-specific editor ──────────────────────────────────
-# export EDITOR="cursor"
+# export EDITOR="code"

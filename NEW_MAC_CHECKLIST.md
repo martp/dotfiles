@@ -60,7 +60,7 @@ This installs Homebrew, applies all dotfiles via chezmoi, installs all packages,
 
 What it does:
 - Installs Xcode CLT, Homebrew, chezmoi
-- Applies all dotfiles (`~/.zshrc`, `~/.gitconfig`, `~/.ssh/config`, Ghostty, Starship, Zed, etc.)
+- Applies all dotfiles (`~/.zshrc`, `~/.gitconfig`, `~/.ssh/config`, Ghostty, Starship, etc.)
 - Installs all packages from Brewfile (including GUI apps)
 - Sets macOS defaults (Dock, Finder, keyboard, screenshots, dark mode)
 - Installs Node LTS via fnm, bun, Claude Code CLI
@@ -124,16 +124,11 @@ Extensions that were installed on your old Mac (Raycast will prompt to reinstall
 | Google Chrome | Search Chrome tabs/history |
 | Google Search | Google with suggestions |
 | MyIP | Show your IP info |
-| Cursor | Open Cursor projects |
 | Port Manager | Find & kill processes by port |
 | Clean Keyboard | Lock keyboard for cleaning |
 
 ### VS Code
 - [ ] Settings Sync restores automatically on sign-in — check Claude Code extension is active
-
-### Zed
-- [ ] Open Zed → sign in with GitHub (for AI features)
-- [ ] Settings applied by chezmoi ✓
 
 ### Google Chrome
 - [ ] Sign in with Google account → bookmarks, extensions, history sync automatically
