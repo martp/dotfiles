@@ -96,30 +96,21 @@ There are two separate (and complementary) ways 1Password helps with your setup.
 
 This is **not** the chezmoi integration — it's a standalone 1Password feature.
 
-Normally your SSH private keys live as files in `~/.ssh/`. 1Password can replace this entirely: it stores your keys inside 1Password and acts as the SSH agent itself, unlocked by Touch ID. The keys **never exist as files on disk**.
+SSH private keys are stored inside 1Password, which acts as the SSH agent, unlocked by Touch ID. The keys never exist as files on disk. The `dot_ssh/config` in this repo already points at the 1Password agent socket — so on a new Mac, SSH just works once 1Password is signed in.
 
 **Benefits:**
-- SSH keys survive a machine wipe or loss (they live in 1Password, not on the Mac)
-- Touch ID to authenticate SSH connections — no passphrase to type
-- New Mac setup is: install 1Password → sign in → SSH works, no key copying or generation needed
+- SSH keys survive a machine wipe or loss — they live in 1Password, not on the Mac
+- Touch ID to authenticate SSH connections, no passphrase to type
+- New Mac setup: install 1Password → sign in → enable agent → done
 
-**To enable it on your new Mac:**
-1. Open 1Password → Settings → Developer → turn on "Use the SSH Agent"
-2. Import your existing keys into 1Password (Settings → Developer → Add SSH Key → import file), or generate new ones there
-3. Update `~/.ssh/config` to point to the 1Password socket instead of key files:
+**To enable it on a new Mac:**
+1. Install 1Password and sign into your account
+2. Open 1Password → Settings → Developer → turn on **Use the SSH Agent**
+3. Run `chezmoi apply` — the `~/.ssh/config` pointing at the 1Password socket is applied automatically
+4. Test: `ssh -T git@github.com` — Touch ID prompt, then "Hi martp!"
 
-```
-Host *
-  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-
-Host github.com
-  User git
-
-Host gitlab.com
-  User git
-```
-
-The `dot_ssh/config` in this repo has the standard file-based config. If you switch to the 1Password SSH Agent on your new Mac, update it to the above and run `chezmoi add ~/.ssh/config` to save the change back to the repo.
+**If you ever need to add a new SSH key to 1Password:**
+In 1Password, click **New Item → SSH Key → Add Private Key → Import a Key File**, navigate to the key file and import. If it has a passphrase you'll be asked once — after that 1Password handles it.
 
 ---
 
