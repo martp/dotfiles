@@ -103,41 +103,16 @@ The bootstrap script will:
 
 ## SSH Keys
 
-### Option A — Generate fresh keys (recommended)
+Your SSH keys are stored in 1Password — no key files to copy or generate.
 
-```bash
-# GitHub key
-ssh-keygen -t ed25519 -C "mart@blewpri.co.uk" -f ~/.ssh/id_ed25519
+- [ ] Install 1Password and sign into your account (see App Setup below)
+- [ ] Open 1Password → Settings → Developer → enable **Use the SSH Agent**
+- [ ] The `~/.ssh/config` applied by chezmoi already points at the 1Password agent socket
 
-# GitLab key
-ssh-keygen -t ed25519 -C "mart@blewpri.co.uk" -f ~/.ssh/id_ed25519_gitlab
-
-# Add to keychain
-ssh-add --apple-use-keychain ~/.ssh/id_ed25519
-ssh-add --apple-use-keychain ~/.ssh/id_ed25519_gitlab
-```
-
-Then add the **public keys** to:
-- GitHub: https://github.com/settings/ssh/new (paste `cat ~/.ssh/id_ed25519.pub`)
-- GitLab: https://gitlab.com/-/user_settings/ssh_keys (paste `cat ~/.ssh/id_ed25519_gitlab.pub`)
-
-Test:
+Test once 1Password is running:
 ```bash
 ssh -T git@github.com   # should say "Hi martp!"
 ssh -T git@gitlab.com   # should say "Welcome to GitLab, @martp!"
-```
-
-### Option B — Transfer keys from old Mac (if you want to keep the same keys)
-
-```bash
-# On old Mac:
-scp ~/.ssh/id_ed25519 ~/.ssh/id_ed25519.pub martin@newmac:~/.ssh/
-scp ~/.ssh/id_ed25519_gitlab ~/.ssh/id_ed25519_gitlab.pub martin@newmac:~/.ssh/
-
-# On new Mac:
-chmod 600 ~/.ssh/id_ed25519 ~/.ssh/id_ed25519_gitlab
-ssh-add --apple-use-keychain ~/.ssh/id_ed25519
-ssh-add --apple-use-keychain ~/.ssh/id_ed25519_gitlab
 ```
 
 ---
