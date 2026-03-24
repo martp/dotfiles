@@ -8,9 +8,6 @@
 #   brew bundle dump --file=~/dotfiles/Brewfile --force  (regenerate from current state)
 #   brew bundle cleanup --file=~/dotfiles/Brewfile       (remove anything not in this file)
 
-# ── Taps ────────────────────────────────────────────────────
-tap "homebrew/cask-fonts"
-
 # ── CLI tools ───────────────────────────────────────────────
 brew "chezmoi"                # Dotfiles manager (this repo!)
 brew "bat"                    # Better cat (syntax highlighting)

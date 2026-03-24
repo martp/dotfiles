@@ -121,8 +121,8 @@ defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool tru
 # ── Menu bar ─────────────────────────────────────────────────
 echo "  Menu bar..."
 
-# Show battery percentage
-defaults write com.apple.menuextra.battery ShowPercent -bool true
+# NOTE: Battery percentage can no longer be set via defaults on macOS Ventura+.
+# Set it manually: System Settings → Control Centre → Battery → Show Percentage
 
 # ── Misc quality of life ─────────────────────────────────────
 echo "  Misc..."

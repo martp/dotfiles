@@ -147,6 +147,7 @@ Extensions that were installed on your old Mac (Raycast will prompt to reinstall
 - [ ] Remove apps you don't want, add your frequently used ones
 
 ### Menu Bar
+- [ ] Battery percentage: System Settings → Control Centre → Battery → Show Percentage
 - [ ] Remove unwanted menu bar icons
 - [ ] Control Centre items as preferred
 
