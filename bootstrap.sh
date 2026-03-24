@@ -87,47 +87,12 @@ fi
 
 # ── 6. macOS defaults ────────────────────────────────────────
 step "macOS defaults"
-
-# Keyboard: faster key repeat
-defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
-
-# Trackpad: tap to click
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
-
-# Finder: show extensions, hidden files
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-defaults write com.apple.finder AppleShowAllFiles -bool true
-defaults write com.apple.finder ShowPathbar -bool true
-defaults write com.apple.finder ShowStatusBar -bool true
-defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"  # list view
-defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"  # search current folder
-
-# Screenshots: save to ~/Screenshots
-defaults write com.apple.screencapture location -string "$HOME/Screenshots"
-mkdir -p "$HOME/Screenshots"
-
-# Dock: auto-hide, reduce size
-defaults write com.apple.dock autohide -bool true
-defaults write com.apple.dock tilesize -int 48
-defaults write com.apple.dock show-recents -bool false
-
-# Safari: dev mode
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-
-# Disable press-and-hold for accented characters (enable key repeat in apps)
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-
-# Show battery percentage
-defaults write com.apple.menuextra.battery ShowPercent -bool true
-
-# Restart affected apps
-for app in "Finder" "Dock" "SystemUIServer"; do
-  killall "$app" &>/dev/null || true
-done
-
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -f "$SCRIPT_DIR/scripts/macos.sh" ]; then
+  bash "$SCRIPT_DIR/scripts/macos.sh"
+else
+  info "scripts/macos.sh not found — skipping (run it manually from your dotfiles dir)"
+fi
 done_ "macOS defaults applied"
 
 # ── 7. SSH Keys ───────────────────────────────────────────────
