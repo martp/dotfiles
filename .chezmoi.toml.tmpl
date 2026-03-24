@@ -1,0 +1,16 @@
+{{- /* chezmoi config template — runs interactively on first `chezmoi init` */ -}}
+{{- $name  := promptStringOnce . "name"  "Git full name"  -}}
+{{- $email := promptStringOnce . "email" "Git email"      -}}
+
+[data]
+  name  = {{ $name  | quote }}
+  email = {{ $email | quote }}
+
+# ── 1Password integration ────────────────────────────────────
+# chezmoi can pull secrets from 1Password at apply time.
+# Requires op (1Password CLI) to be signed in: eval $(op signin)
+#
+# To use in any .tmpl file, the syntax is:
+#   onepasswordRead "op://VAULT/ITEM/FIELD"
+#
+# See README.md for usage examples.

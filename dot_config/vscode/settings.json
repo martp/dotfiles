@@ -1,0 +1,26 @@
+{
+  // Claude Code
+  "claudeCode.initialPermissionMode": "plan",
+  "claudeCode.preferredLocation": "sidebar",
+  "claudeCode.useTerminal": false,
+
+  // Editor
+  "editor.fontSize": 11.9,
+  "editor.lineHeight": 1.6,
+  "editor.minimap.enabled": false,
+  "extensions.ignoreRecommendations": true,
+
+  // Terminal
+  "terminal.integrated.tabs.enabled": true,
+
+  // Workbench
+  "window.commandCenter": false,
+  "window.zoomLevel": 0.6,
+  "workbench.activityBar.location": "hidden",
+  "workbench.colorTheme": "Experimental Dark",
+  "workbench.editor.showTabs": "single",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.layoutControl.enabled": false,
+  "workbench.startupEditor": "none",
+  "workbench.statusBar.visible": true
+}

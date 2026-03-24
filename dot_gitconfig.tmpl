@@ -1,0 +1,42 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[user]
+	name = {{ .name }}
+	email = {{ .email }}
+
+[core]
+  editor = code --wait
+  excludesFile = ~/.gitignore_global
+
+[diff]
+  tool = vscode
+  colorMoved = zebra
+
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+
+[merge]
+  tool = vscode
+  conflictstyle = diff3
+
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
+
+[pull]
+  rebase = false
+
+[push]
+  autoSetupRemote = true
+
+[init]
+  defaultBranch = main
+
+[fetch]
+  prune = true
+
+[rebase]
+  autoStash = true

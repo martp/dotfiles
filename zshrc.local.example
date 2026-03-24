@@ -1,0 +1,25 @@
+# ~/.zshrc.local — machine/client-specific config
+#
+# This file is NOT tracked in the dotfiles repo.
+# Copy this example to ~/.zshrc.local and fill it in on each machine.
+# chezmoi will never touch it.
+#
+# cp ~/dotfiles/zshrc.local.example ~/.zshrc.local
+
+# ── API Keys ─────────────────────────────────────────────────
+# Option A: plain text (fine if disk is encrypted with FileVault)
+# export ANTHROPIC_API_KEY="sk-ant-..."
+# export OPENAI_API_KEY="sk-..."
+
+# Option B: pull from 1Password at shell start (no secrets on disk at all)
+# export ANTHROPIC_API_KEY="$(op read "op://Private/Anthropic API Key/credential" 2>/dev/null)"
+
+# ── Client-specific ──────────────────────────────────────────
+# export CLIENT_API_URL="https://api.clientname.com"
+# alias client-vpn="sudo openconnect vpn.clientname.com"
+
+# ── Work PATH ────────────────────────────────────────────────
+# export PATH="$HOME/work/tools/bin:$PATH"
+
+# ── Machine-specific editor ──────────────────────────────────
+# export EDITOR="cursor"

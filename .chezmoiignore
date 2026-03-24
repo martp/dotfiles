@@ -1,0 +1,21 @@
+# Files that chezmoi should never manage or overwrite
+# (machine-local, gitignored on the dotfiles repo side)
+
+# Local zsh overrides — created manually on each machine
+.zshrc.local
+
+# SSH private keys — never tracked
+.ssh/id_*
+.ssh/known_hosts
+.ssh/authorized_keys
+
+# 1Password socket
+.config/op/op-daemon.sock
+
+# Shell history — fresh start on each machine
+.zsh_history
+.zsh_sessions
+
+# Generated / cache files
+.zcompdump
+.DS_Store

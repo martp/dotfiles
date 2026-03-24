@@ -1,0 +1,115 @@
+# ~/.zshrc
+# Clean setup — no Oh My Zsh
+
+# ─── Homebrew ───────────────────────────────────────────────
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# ─── Starship prompt ────────────────────────────────────────
+eval "$(starship init zsh)"
+
+# ─── zsh plugins ────────────────────────────────────────────
+source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOME/.zsh/you-should-use/you-should-use.plugin.zsh"
+
+# ─── fzf (Ctrl+R history search) ────────────────────────────
+eval "$(fzf --zsh)"
+
+# ─── zoxide (smart cd) ──────────────────────────────────────
+eval "$(zoxide init zsh)"
+
+# ─── fnm (Node version manager) ─────────────────────────────
+eval "$(fnm env --use-on-cd --shell zsh)"
+
+# ─── Modern CLI aliases ──────────────────────────────────────
+alias ls="eza --icons --group-directories-first"
+alias ll="eza -la --icons --group-directories-first --git"
+alias lt="eza --tree --icons --level=2"
+alias cat="bat"
+alias find="fd"
+alias grep="rg"
+alias cd="z"
+
+# ─── Git aliases ────────────────────────────────────────────
+
+# Rebase current branch onto the default remote branch (main/master)
+alias gru='git fetch origin && git rebase origin/$(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
+
+# Merge the latest default branch (main/master) into the current branch
+alias gmu='git fetch origin && git merge origin/$(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
+
+alias g="git"
+
+# Status / diff
+alias gs="git status"
+alias gss="git status -s"
+
+# Add / commit
+alias gaa="git add --all"
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gca="git commit -a"
+alias gcam="git commit -a -m"
+
+# Push / pull / fetch
+alias gp="git push"
+alias gpf="git push --force-with-lease"
+alias gpsup='git push --set-upstream origin $(git branch --show-current)'
+alias gl="git pull"
+alias gf="git fetch"
+alias gfa="git fetch --all --prune"
+
+# Branching
+alias gco="git checkout"
+alias gcb="git checkout -b"
+alias gb="git branch"
+alias gbd="git branch -d"
+
+# Rebase / merge
+alias grb="git rebase"
+alias grbi="git rebase -i"
+alias grbm="git rebase main"
+alias grba="git rebase --abort"
+alias grbc="git rebase --continue"
+alias gm="git merge"
+
+# Stash
+alias gsta="git stash push"
+alias gstp="git stash pop"
+alias gstl="git stash list"
+
+# Reset
+alias grh="git reset HEAD"
+alias grhh="git reset HEAD --hard"
+
+# ─── Dev shortcuts ──────────────────────────────────────────
+alias dev="bun run dev"
+alias build="bun run build"
+alias bi="bun install"
+alias ba="bun add"
+
+# ─── Editor ─────────────────────────────────────────────────
+export EDITOR="code"
+
+# ─── History ────────────────────────────────────────────────
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+
+# ─── Up/down arrow: prefix-aware history search ─────────────
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+
+# ─── PATH ───────────────────────────────────────────────────
+export PATH="$HOME/.local/bin:$PATH"
+
+# ─── Local overrides (machine/client-specific, not in git) ──
+# Put API keys, work aliases, client PATH entries etc. in ~/.zshrc.local
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

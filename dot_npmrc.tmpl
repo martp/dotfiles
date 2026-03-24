@@ -1,0 +1,15 @@
+# ~/.npmrc — global npm defaults
+# Managed by chezmoi. Name/email come from chezmoi config.
+
+init.author.name={{ .name }}
+init.author.email={{ .email }}
+init.license=MIT
+init.version=0.1.0
+
+# Save exact versions by default (no ^ or ~ ranges)
+save-exact=true
+
+# Private registry token — store in 1Password, not here.
+# See zshrc.local.example for how to set NPM_TOKEN via 1Password,
+# then uncomment:
+# //registry.npmjs.org/:_authToken=${NPM_TOKEN}
