@@ -4,14 +4,14 @@
 # Run this once on a fresh Mac to get up and running.
 #
 # Usage:
-#   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/dotfiles/main/bootstrap.sh)"
+#   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/martp/dotfiles/main/bootstrap.sh)"
 # Or, after cloning:
 #   bash ~/dotfiles/bootstrap.sh
 # ============================================================
 
 set -euo pipefail
 
-DOTFILES_REPO="https://github.com/martp/dotfiles"  # ← update this
+DOTFILES_REPO="https://github.com/martp/dotfiles"
 DOTFILES_DIR="$HOME/.local/share/chezmoi"
 
 # ── Colours ─────────────────────────────────────────────────
@@ -70,13 +70,8 @@ done_ "Dotfiles applied"
 
 # ── 5. Homebrew packages (Brewfile) ──────────────────────────
 step "Installing Homebrew packages"
-BREWFILE="$HOME/dotfiles/Brewfile"
-# chezmoi puts the Brewfile at ~/ — find it
-if [ -f "$HOME/Brewfile" ]; then
-  BREWFILE="$HOME/Brewfile"
-elif [ -f "$(dirname "$0")/Brewfile" ]; then
-  BREWFILE="$(dirname "$0")/Brewfile"
-fi
+# Brewfile lives in the chezmoi source directory
+BREWFILE="$(chezmoi source-path)/Brewfile"
 
 if [ -f "$BREWFILE" ]; then
   brew bundle install --file="$BREWFILE" --no-lock
@@ -87,9 +82,9 @@ fi
 
 # ── 6. macOS defaults ────────────────────────────────────────
 step "macOS defaults"
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-if [ -f "$SCRIPT_DIR/scripts/macos.sh" ]; then
-  bash "$SCRIPT_DIR/scripts/macos.sh"
+MACOS_SCRIPT="$(chezmoi source-path)/scripts/macos.sh"
+if [ -f "$MACOS_SCRIPT" ]; then
+  bash "$MACOS_SCRIPT"
 else
   info "scripts/macos.sh not found — skipping (run it manually from your dotfiles dir)"
 fi
@@ -154,9 +149,9 @@ echo -e "  Bootstrap complete!"
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${reset}"
 echo ""
 echo "  Next steps:"
-echo "  1. Set up SSH keys (see above)"
-echo "  2. Open a new shell (your zshrc is now active)"
-echo "  3. Sign into Raycast and import your settings export"
-echo "  4. Sign into 1Password"
+echo "  1. Open a new shell (your zshrc is now active)"
+echo "  2. Sign into 1Password → enable SSH Agent → test: ssh -T git@github.com"
+echo "  3. Run: gh auth login"
+echo "  4. Sign into Raycast and import your settings export from iCloud"
 echo "  5. See NEW_MAC_CHECKLIST.md for the full manual checklist"
 echo ""

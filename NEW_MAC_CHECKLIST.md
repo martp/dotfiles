@@ -6,36 +6,18 @@ A complete step-by-step guide for setting up a new Mac. Run through this in orde
 
 ## Before You Leave the Old Mac
 
-### Export / Back Up
+These are already done — this section is here for reference if you ever do this again.
 
-- [ ] **Push dotfiles repo to GitHub** — this repo! Create it on GitHub, then:
-  ```bash
-  cd ~/dotfiles
-  git init
-  git add -A
-  git commit -m "initial dotfiles"
-  git remote add origin git@github.com:martp/dotfiles.git
-  git push -u origin main
-  ```
+- [x] Dotfiles repo pushed to GitHub (`github.com/martp/dotfiles`)
+- [x] Brewfile generated from current Mac (`brew bundle dump`)
+- [x] Raycast settings exported to iCloud
+- [x] VS Code Settings Sync enabled
+- [x] SSH keys imported into 1Password
 
-- [ ] **Generate your full Brewfile** — captures everything currently installed:
-  ```bash
-  brew bundle dump --file=~/dotfiles/Brewfile --force
-  git add Brewfile && git commit -m "update Brewfile from old mac" && git push
-  ```
-
-- [ ] **Export Raycast settings**
-  Raycast → Settings (⌘,) → General → scroll to "Export/Import" → Export
-
-- [ ] **VS Code** — turn on Settings Sync if not already on:
-  Code → Settings → Turn on Settings Sync… → Sign in with GitHub
-
-- [ ] **Note down any Raycast AI settings / custom commands** you want to keep
-
-### Deregister (important — do before wiping or selling)
+### Deregister (do before wiping or selling old Mac)
 
 - [ ] **Deauthorise iTunes/Apple Music**
-  Music app → Account menu → Authorizations → Deauthorize This Computer
+  Music → Account → Authorizations → Deauthorize This Computer
 
 - [ ] **Sign out of iMessage**
   Messages → Settings → iMessage → Sign Out
@@ -43,12 +25,8 @@ A complete step-by-step guide for setting up a new Mac. Run through this in orde
 - [ ] **Sign out of FaceTime**
   FaceTime → Settings → Sign Out
 
-- [ ] **Sign out of iCloud** (optional — you can also just remove the device from your Apple ID online)
+- [ ] **Sign out of iCloud** (or remove device from Apple ID online)
   System Settings → [Your Name] → Sign Out
-
-- [ ] **1Password** — no deregistration needed, just sign in on the new Mac
-
-- [ ] **Raycast Pro** — tied to your account, auto-transfers when you sign in
 
 ---
 
@@ -57,9 +35,8 @@ A complete step-by-step guide for setting up a new Mac. Run through this in orde
 ### macOS Setup Wizard
 
 - [ ] Choose language / region
-- [ ] **Don't restore from Time Machine or Migration Assistant** (clean start!)
+- [ ] **Don't restore from Time Machine or Migration Assistant** — clean start!
 - [ ] Sign in with your Apple ID
-- [ ] Enable iCloud (Photos, iCloud Drive, etc. as you prefer)
 - [ ] Enable **FileVault** (disk encryption) — do this during setup or immediately after
 
 ### First thing after login
@@ -75,44 +52,36 @@ A complete step-by-step guide for setting up a new Mac. Run through this in orde
 
 ## Run the Bootstrap Script
 
+This installs Homebrew, applies all dotfiles via chezmoi, installs all packages, and sets macOS defaults.
+
 ```bash
-# Clone dotfiles and run bootstrap (installs Homebrew, chezmoi, applies dotfiles, installs packages)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/martp/dotfiles/main/bootstrap.sh)"
 ```
 
-Or manually:
-```bash
-# Install Xcode CLT first
-xcode-select --install
-
-# Then run:
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install chezmoi
-chezmoi init --apply martp/dotfiles
-brew bundle install --file=~/dotfiles/Brewfile
-```
-
-The bootstrap script will:
-- Install Homebrew
-- Apply all dotfiles via chezmoi (zshrc, gitconfig, starship, ghostty, ssh config, etc.)
-- Install all packages from Brewfile
-- Set sensible macOS defaults
-- Install Node LTS via fnm
+What it does:
+- Installs Xcode CLT, Homebrew, chezmoi
+- Applies all dotfiles (`~/.zshrc`, `~/.gitconfig`, `~/.ssh/config`, Ghostty, Starship, Zed, etc.)
+- Installs all packages from Brewfile (including GUI apps)
+- Sets macOS defaults (Dock, Finder, keyboard, screenshots, dark mode)
+- Installs Node LTS via fnm, bun, Claude Code CLI
 
 ---
 
-## SSH Keys
+## 1Password (do this before testing SSH)
 
-Your SSH keys are stored in 1Password — no key files to copy or generate.
+- [ ] Open 1Password → Sign in with your account (QR code from another device is easiest)
+- [ ] Open 1Password → Settings → Developer → turn on **Use the SSH Agent**
 
-- [ ] Install 1Password and sign into your account (see App Setup below)
-- [ ] Open 1Password → Settings → Developer → enable **Use the SSH Agent**
-- [ ] The `~/.ssh/config` applied by chezmoi already points at the 1Password agent socket
+---
 
-Test once 1Password is running:
+## SSH
+
+Your keys are stored in 1Password — no files to copy or generate.
+
+Test once the SSH Agent is enabled:
 ```bash
-ssh -T git@github.com   # should say "Hi martp!"
-ssh -T git@gitlab.com   # should say "Welcome to GitLab, @martp!"
+ssh -T git@github.com    # → "Hi martp!"
+ssh -T git@gitlab.com    # → "Welcome to GitLab, @martp!"
 ```
 
 ---
@@ -121,21 +90,19 @@ ssh -T git@gitlab.com   # should say "Welcome to GitLab, @martp!"
 
 ```bash
 gh auth login
-# Choose: GitHub.com → SSH → your key → Login with a web browser
+# Choose: GitHub.com → SSH → Login with a web browser
 ```
 
 ---
 
-## App Setup (Manual Steps)
-
-### 1Password
-- Open 1Password → Sign in with your account (or QR code from another device)
+## App Setup
 
 ### Raycast
-- Open Raycast → Sign in with your Raycast account
-- Import your settings export: Settings → General → Import
-- Check your hotkey is set (⌥Space or whichever you use)
-- Your extensions to reinstall (from old Mac):
+- [ ] Open Raycast → Sign in with your Raycast account
+- [ ] Import settings: Settings → General → Import → find export in iCloud
+- [ ] Confirm your hotkey works (⌥Space or similar)
+
+Extensions that were installed on your old Mac (Raycast will prompt to reinstall):
 
 | Extension | What it does |
 |---|---|
@@ -162,83 +129,57 @@ gh auth login
 | Clean Keyboard | Lock keyboard for cleaning |
 
 ### VS Code
-- Settings Sync should restore automatically once you sign in
-- Check that Claude Code extension is active
-- If not: Extensions → search "Claude Code" → Install
-
-### Ghostty
-- Config is applied via chezmoi automatically ✓
-- Install font if missing: `brew install --cask font-jetbrains-mono-nerd-font`
+- [ ] Settings Sync restores automatically on sign-in — check Claude Code extension is active
 
 ### Zed
-- Open Zed → sign in with your GitHub account (for AI features)
-- Settings applied via chezmoi ✓
+- [ ] Open Zed → sign in with GitHub (for AI features)
+- [ ] Settings applied by chezmoi ✓
 
 ### Google Chrome
-- Sign in with Google account → bookmarks, extensions, history will sync
+- [ ] Sign in with Google account → bookmarks, extensions, history sync automatically
+- [ ] Install 1Password browser extension
 
 ---
 
-## macOS Settings (Manual — Things bootstrap doesn't cover)
-
-### Menu Bar & Control Centre
-- [ ] Battery → Show Percentage ✓ (handled by bootstrap)
-- [ ] Remove unwanted menu bar icons
-- [ ] Add/arrange items in Control Centre to your preference
+## macOS Settings (manual — not covered by bootstrap)
 
 ### Dock
-- [ ] Remove apps you don't want from Dock (right-click → Remove from Dock)
-- [ ] Add your frequently used apps
+- [ ] Remove apps you don't want, add your frequently used ones
+
+### Menu Bar
+- [ ] Remove unwanted menu bar icons
+- [ ] Control Centre items as preferred
 
 ### Notifications
-- [ ] Go through each app's notification settings — turn off what you don't need
-- [ ] Do Not Disturb / Focus schedules
+- [ ] Go through each app — turn off what you don't need
 
-### Login Items (Background Apps)
-- System Settings → General → Login Items
-- Add: Raycast, 1Password, any others you want to auto-start
+### Login Items
+- [ ] System Settings → General → Login Items → add Raycast, 1Password
 
 ### iCloud
-- [ ] Enable iCloud Drive
-- [ ] Desktop & Documents Folders — decide if you want these synced
-- [ ] Photos — enable if wanted
-- [ ] iMessage — sign in and enable
+- [ ] iCloud Drive, Photos, iMessage — enable as preferred
+- [ ] Desktop & Documents sync — decide if you want this
 
-### Touch ID & Fingerprints
-- [ ] System Settings → Touch ID & Password → Add fingerprints
+### Touch ID
+- [ ] System Settings → Touch ID & Password → add fingerprints
 
 ### Trackpad
-- [ ] Adjust tracking speed if needed (bootstrap sets tap-to-click)
+- [ ] Adjust tracking speed if needed
 - [ ] Three-finger drag: Accessibility → Pointer Control → Trackpad Options
 
-### Keyboard
-- [ ] Key repeat and delay set by bootstrap — open new Terminal to confirm
-- [ ] Modifier keys remapping if needed
-
 ### Printer
-- [ ] System Settings → Printers & Scanners → Add printer
+- [ ] System Settings → Printers & Scanners → add printer
 
 ---
 
 ## Dev Environment
 
-### Node / JS
 ```bash
-fnm install --lts     # Install latest LTS (done by bootstrap)
-fnm use lts-latest
+# Node — installed by bootstrap, verify:
 node --version
 bun --version
-```
 
-### Any global packages you use regularly
-```bash
-# Examples — only install what you actually use:
-# bun add -g @anthropic-ai/sdk
-# npm install -g typescript
-```
-
-### Clone your projects
-```bash
+# Clone your projects
 cd ~/Git
 git clone git@github.com:martp/YOUR_REPO.git
 ```
@@ -247,27 +188,26 @@ git clone git@github.com:martp/YOUR_REPO.git
 
 ## Final Checks
 
-- [ ] Open Ghostty — does the prompt look right? (Starship with git info)
-- [ ] `ls` → shows eza with icons
-- [ ] `cat ~/.zshrc` → shows bat with syntax highlighting
-- [ ] `z` → zoxide working
-- [ ] `gs` in a git repo → git status alias working
+- [ ] Open Ghostty — prompt looks right (Starship with git info, correct colours)
+- [ ] `ls` → eza with icons
+- [ ] `cat ~/.zshrc` → bat with syntax highlighting
+- [ ] `z ~/` → zoxide working
+- [ ] `gs` in a git repo → git status alias works
+- [ ] `git config --global user.email` → shows `mart@blewpri.co.uk`
+- [ ] `ssh -T git@github.com` → Touch ID + "Hi martp!"
+- [ ] `code .` → VS Code opens from terminal
 - [ ] Raycast ⌥Space → opens Raycast
-- [ ] 1Password browser extension installed in Chrome
-- [ ] SSH test: `ssh -T git@github.com`
-- [ ] Git commit with correct name/email: `git config --global user.email`
-- [ ] VS Code opens from terminal: `code .`
 
 ---
 
-## Ongoing: Keeping Dotfiles Updated
+## Keeping Dotfiles Updated
 
-When you change a config file on your Mac:
+When you change a config file:
 
 ```bash
-chezmoi diff                    # see what's changed
-chezmoi add ~/.zshrc            # track a new change
-chezmoi edit ~/.zshrc           # edit via chezmoi
-chezmoi cd                      # go to the source repo
-git add -A && git commit -m "..." && git push
+chezmoi diff                 # see what's changed vs the repo
+chezmoi add ~/.zshrc         # pull a change back into the repo
+chezmoi edit ~/.zshrc        # edit via chezmoi (applies on save)
+cd ~/dotfiles
+git add -A && gcm "..." && gp
 ```
