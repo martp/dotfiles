@@ -41,14 +41,25 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/martp/dotfiles/main/boot
 brew install chezmoi
 
 # 3. Clone dotfiles and apply
-chezmoi init --apply YOUR_GITHUB_USERNAME/dotfiles
+chezmoi init --apply martp
 
 # 4. Install Homebrew packages
-brew bundle install --file=~/Brewfile
+brew bundle install --file="$(chezmoi source-path)/Brewfile"
 
 # 5. Install Node LTS
 fnm install --lts && fnm use lts-latest
 ```
+
+### After SSH is set up (post-bootstrap)
+
+Once 1Password SSH Agent is running, switch the chezmoi repo remote from HTTPS to SSH so you can push changes:
+
+```bash
+cd ~/.local/share/chezmoi
+git remote set-url origin git@github.com:martp/dotfiles.git
+```
+
+This only needs to be done once. After this, `chezmoi cd && git push` will authenticate via 1Password Touch ID.
 
 ## Keeping dotfiles in sync
 

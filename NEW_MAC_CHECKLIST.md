@@ -84,6 +84,12 @@ ssh -T git@github.com    # → "Hi martp!"
 ssh -T git@gitlab.com    # → "Welcome to GitLab, @martp!"
 ```
 
+Then switch the chezmoi repo remote from HTTPS to SSH so future pushes work:
+```bash
+cd ~/.local/share/chezmoi
+git remote set-url origin git@github.com:martp/dotfiles.git
+```
+
 ---
 
 ## GitHub CLI
