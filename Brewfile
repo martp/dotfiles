@@ -41,6 +41,8 @@ cask "raycast"
 cask "1password"
 cask "visual-studio-code"
 cask "google-chrome"
+cask "balsamiq-wireframes"
+cask "microsoft-teams"
 
 # ── bun (not via Homebrew) ───────────────────────────────────
 # bun was installed via its own installer, not brew.
