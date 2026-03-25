@@ -50,16 +50,7 @@ brew bundle install --file="$(chezmoi source-path)/Brewfile"
 fnm install --lts && fnm use lts-latest
 ```
 
-### After SSH is set up (post-bootstrap)
-
-Once 1Password SSH Agent is running, switch the chezmoi repo remote from HTTPS to SSH so you can push changes:
-
-```bash
-cd ~/.local/share/chezmoi
-git remote set-url origin git@github.com:martp/dotfiles.git
-```
-
-This only needs to be done once. After this, `chezmoi cd && git push` will authenticate via 1Password Touch ID.
+The bootstrap script automatically switches the chezmoi remote from HTTPS to SSH after `gh auth login`, so you can push changes via 1Password Touch ID immediately.
 
 ## Keeping dotfiles in sync
 

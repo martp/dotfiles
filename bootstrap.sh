@@ -106,9 +106,22 @@ echo "  The ~/.ssh/config (applied by chezmoi) already points at the 1Password a
 # ── 8. GitHub CLI auth ────────────────────────────────────────
 step "GitHub CLI"
 if ! gh auth status &>/dev/null; then
-  info "Run 'gh auth login' to authenticate with GitHub"
+  info "Authenticating with GitHub..."
+  gh auth login
+  done_ "GitHub CLI authenticated"
 else
   done_ "Already authenticated"
+fi
+
+# ── 8b. Switch chezmoi remote to SSH ──────────────────────────
+step "Switch chezmoi remote to SSH"
+CURRENT_REMOTE=$(git -C "$DOTFILES_DIR" remote get-url origin 2>/dev/null || echo "")
+if [[ "$CURRENT_REMOTE" == https://* ]]; then
+  SSH_REMOTE=$(echo "$CURRENT_REMOTE" | sed 's|https://github.com/|git@github.com:|')
+  git -C "$DOTFILES_DIR" remote set-url origin "$SSH_REMOTE"
+  done_ "Remote switched to $SSH_REMOTE"
+else
+  done_ "Already using SSH"
 fi
 
 # ── 9. fnm / Node ────────────────────────────────────────────
@@ -122,18 +135,7 @@ else
   done_ "Node already installed via fnm"
 fi
 
-# ── 10. bun ───────────────────────────────────────────────────
-step "bun"
-if ! command -v bun &>/dev/null; then
-  curl -fsSL https://bun.sh/install | bash
-  export BUN_INSTALL="$HOME/.bun"
-  export PATH="$BUN_INSTALL/bin:$PATH"
-  done_ "bun installed"
-else
-  done_ "bun already installed"
-fi
-
-# ── 11. Claude Code CLI ───────────────────────────────────────
+# ── 10. Claude Code CLI ───────────────────────────────────────
 step "Claude Code CLI"
 if ! command -v claude &>/dev/null; then
   npm install -g @anthropic-ai/claude-code
@@ -151,7 +153,6 @@ echo ""
 echo "  Next steps:"
 echo "  1. Open a new shell (your zshrc is now active)"
 echo "  2. Sign into 1Password → enable SSH Agent → test: ssh -T git@github.com"
-echo "  3. Run: gh auth login"
-echo "  4. Sign into Raycast and import your settings export from iCloud"
-echo "  5. See NEW_MAC_CHECKLIST.md for the full manual checklist"
+echo "  3. Sign into Raycast and import your settings export from iCloud"
+echo "  4. See NEW_MAC_CHECKLIST.md for the full manual checklist"
 echo ""

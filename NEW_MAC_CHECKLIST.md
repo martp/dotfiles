@@ -4,32 +4,6 @@ A complete step-by-step guide for setting up a new Mac. Run through this in orde
 
 ---
 
-## Before You Leave the Old Mac
-
-These are already done — this section is here for reference if you ever do this again.
-
-- [x] Dotfiles repo pushed to GitHub (`github.com/martp/dotfiles`)
-- [x] Brewfile generated from current Mac (`brew bundle dump`)
-- [x] Raycast settings exported to iCloud
-- [x] VS Code Settings Sync enabled
-- [x] SSH keys imported into 1Password
-
-### Deregister (do before wiping or selling old Mac)
-
-- [ ] **Deauthorise iTunes/Apple Music**
-  Music → Account → Authorizations → Deauthorize This Computer
-
-- [ ] **Sign out of iMessage**
-  Messages → Settings → iMessage → Sign Out
-
-- [ ] **Sign out of FaceTime**
-  FaceTime → Settings → Sign Out
-
-- [ ] **Sign out of iCloud** (or remove device from Apple ID online)
-  System Settings → [Your Name] → Sign Out
-
----
-
 ## New Mac — First Boot
 
 ### macOS Setup Wizard
@@ -84,20 +58,7 @@ ssh -T git@github.com    # → "Hi martp!"
 ssh -T git@gitlab.com    # → "Welcome to GitLab, @martp!"
 ```
 
-Then switch the chezmoi repo remote from HTTPS to SSH so future pushes work:
-```bash
-cd ~/.local/share/chezmoi
-git remote set-url origin git@github.com:martp/dotfiles.git
-```
-
----
-
-## GitHub CLI
-
-```bash
-gh auth login
-# Choose: GitHub.com → SSH → Login with a web browser
-```
+The bootstrap script automatically switches the chezmoi remote to SSH and runs `gh auth login`.
 
 ---
 
@@ -105,33 +66,8 @@ gh auth login
 
 ### Raycast
 - [ ] Open Raycast → Sign in with your Raycast account
-- [ ] Import settings: Settings → General → Import → find export in iCloud
+- [ ] Import settings: Settings → General → Import → find export in iCloud (restores all extensions)
 - [ ] Confirm your hotkey works (⌥Space or similar)
-
-Extensions that were installed on your old Mac (Raycast will prompt to reinstall):
-
-| Extension | What it does |
-|---|---|
-| Color Picker | Pick colours anywhere on screen |
-| Apple Music | Control Music with keyboard |
-| Kill Process | Kill processes by CPU/memory |
-| Google Gemini | Gemini AI in Raycast |
-| YouTube | Search YouTube |
-| Chrome Profiles | Switch Chrome profiles |
-| Ray.so | Create code screenshots |
-| System Monitor | CPU / memory / network stats |
-| Speedtest | Internet speed test |
-| Browser Bookmarks | Search bookmarks from all browsers |
-| Coffee | Prevent sleep |
-| Remove Paywall | Strip paywalls from URLs |
-| Google Translate | Quick translation |
-| Lorem Ipsum | Generate placeholder text |
-| Apple Notes | Search / create notes |
-| Google Chrome | Search Chrome tabs/history |
-| Google Search | Google with suggestions |
-| MyIP | Show your IP info |
-| Port Manager | Find & kill processes by port |
-| Clean Keyboard | Lock keyboard for cleaning |
 
 ### VS Code
 - [ ] Settings Sync restores automatically on sign-in — check Claude Code extension is active
