@@ -121,6 +121,9 @@ defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool tru
 # Reduce desktop tinting (wallpaper colour bleed into windows)
 defaults write -g AppleReduceDesktopTinting -bool yes
 
+# Reduce motion (makes Stage Manager animations instant, among other things)
+sudo defaults write com.apple.universalaccess reduceMotion -bool true
+
 # ── Menu bar ─────────────────────────────────────────────────
 echo "  Menu bar..."
 
