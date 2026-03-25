@@ -43,5 +43,6 @@ cask "visual-studio-code"
 cask "google-chrome"
 cask "balsamiq-wireframes"
 cask "microsoft-teams"
+cask "tower"
 
 brew "oven-sh/bun/bun"            # JavaScript runtime & package manager
