@@ -26,9 +26,8 @@ alias ls="eza --icons --group-directories-first"
 alias ll="eza -la --icons --group-directories-first --git"
 alias lt="eza --tree --icons --level=2"
 alias cat="bat"
-alias find="fd"
-alias grep="rg"
-alias cd="z"
+# Note: fd and rg are available directly — not aliased over find/grep
+# to avoid breaking scripts that rely on POSIX flag conventions
 
 # ─── Git aliases ────────────────────────────────────────────
 
@@ -82,11 +81,10 @@ alias gstl="git stash list"
 alias grh="git reset HEAD"
 alias grhh="git reset HEAD --hard"
 
-# ─── Dev shortcuts ──────────────────────────────────────────
-alias dev="bun run dev"
-alias build="bun run build"
+# ─── Bun shortcuts ──────────────────────────────────────────
 alias bi="bun install"
 alias ba="bun add"
+# Note: dev/build intentionally omitted — too generic, add per-project in ~/.zshrc.local
 
 # ─── Editor ─────────────────────────────────────────────────
 export EDITOR="code"

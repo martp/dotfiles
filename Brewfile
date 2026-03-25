@@ -16,7 +16,6 @@ brew "fd"                     # Better find
 brew "fnm"                    # Fast Node Manager
 brew "fzf"                    # Fuzzy finder (Ctrl+R etc.)
 brew "gh"                     # GitHub CLI
-brew "git-delta"              # Better git diff output
 brew "ripgrep"                # Better grep (rg)
 brew "starship"               # Cross-shell prompt
 brew "zoxide"                 # Smart cd (z)
