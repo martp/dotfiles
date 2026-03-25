@@ -118,6 +118,9 @@ echo "  Appearance..."
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool true
 
+# Reduce desktop tinting (wallpaper colour bleed into windows)
+defaults write -g AppleReduceDesktopTinting -bool yes
+
 # ── Menu bar ─────────────────────────────────────────────────
 echo "  Menu bar..."
 
