@@ -1,15 +1,14 @@
 {
   "window.commandCenter": false,
-  "window.zoomLevel": 1.8,
   "workbench.colorTheme": "GitHub Light Default",
   "workbench.editor.showTabs": "single",
-  "workbench.iconTheme": "vscode-icons",
   "workbench.layoutControl.enabled": false,
   "workbench.startupEditor": "none",
+  "window.zoomLevel": 1.6,
   "editor.formatOnSave": true,
-  "editor.fontSize": 11.28,
+  "editor.fontSize": 10.4,
   "editor.formatOnPaste": true,
-  "editor.lineHeight": 1.54,
+  "editor.lineHeight": 1.5,
   "editor.minimap.enabled": false,
   "editor.snippetSuggestions": "top",
   "editor.suggestSelection": "first",
@@ -19,20 +18,28 @@
   "git.terminalAuthentication": true,
   "githubPullRequests.queries": [
     {
+      "label": "Local Pull Request Branches",
+      "query": "default"
+    },
+    {
       "label": "My PRs · Here",
-      "query": "repo:${owner}/${repository} is:open is:pr author:@me archived:false ",
+      "query": "repo:${owner}/${repository} is:open is:pr author:@me archived:false "
     },
     {
       "label": "Waiting For Review · Here",
-      "query": "repo:${owner}/${repository} is:open is:pr user-review-requested:@me archived:false",
+      "query": "repo:${owner}/${repository} is:open is:pr user-review-requested:@me archived:false"
     },
     {
       "label": "My PRs · All Repos",
-      "query": "is:open is:pr author:@me archived:false ",
+      "query": "repo:${owner}/${repository} is:open is:pr author:@me archived:false "
     },
     {
       "label": "Waiting For Review · All Repos",
-      "query": "is:open is:pr user-review-requested:@me archived:false",
+      "query": "repo:${owner}/${repository} is:open is:pr user-review-requested:@me archived:false"
+    },
+    {
+      "label": "All Open",
+      "query": "default"
     }
   ],
   "terminal.integrated.tabs.enabled": true,
@@ -40,9 +47,16 @@
   "workbench.activityBar.compact": true,
   "window.systemColorTheme": "auto",
   "window.autoDetectColorScheme": true,
-  "workbench.preferredDarkColorTheme": "Experimental Dark",
+  "workbench.preferredDarkColorTheme": "VS Code Dark",
   "workbench.activityBar.location": "hidden",
   "terminal.integrated.enableMultiLinePasteWarning": "never",
   "editor.accessibilitySupport": "off",
-  "workbench.preferredLightColorTheme": "Experimental Light"
+  "claudeCode.preferredLocation": "sidebar",
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.horizontalScrollbarSize": 5,
+  "editor.scrollbar.ignoreHorizontalScrollbarInContentHeight": true,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.verticalScrollbarSize": 5,
+  "editor.stickyScroll.maxLineCount": 3,
+  "git.path": "/usr/bin/git",
 }
