@@ -74,7 +74,7 @@ step "Installing Homebrew packages"
 BREWFILE="$(chezmoi source-path)/Brewfile"
 
 if [ -f "$BREWFILE" ]; then
-  brew bundle install --file="$BREWFILE" --no-lock
+  brew bundle install --file="$BREWFILE"
   done_ "Packages installed"
 else
   info "Brewfile not found at $BREWFILE — skipping (run 'brew bundle' manually)"
