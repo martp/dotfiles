@@ -9,8 +9,8 @@ eval "$(starship init zsh)"
 
 # ─── zsh plugins ────────────────────────────────────────────
 source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$HOME/.zsh/you-should-use/you-should-use.plugin.zsh"
+source "$HOME/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+source "$(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh"
 
 # ─── fzf (Ctrl+R history search) ────────────────────────────
 eval "$(fzf --zsh)"

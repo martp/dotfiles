@@ -21,7 +21,7 @@ brew "ripgrep"                # Better grep (rg)
 brew "starship"               # Cross-shell prompt
 brew "zoxide"                 # Smart cd (z)
 brew "zsh-autosuggestions"    # Fish-style suggestions in zsh
-brew "zsh-syntax-highlighting" # Syntax highlighting in zsh
+brew "zsh-you-should-use"     # Reminds you to use aliases
 
 # ── Fonts ────────────────────────────────────────────────────
 cask "font-jetbrains-mono-nerd-font"   # Used in Ghostty
@@ -41,8 +41,6 @@ vscode "vscode-icons-team.vscode-icons"
 cask "raycast"
 cask "1password"
 cask "visual-studio-code"
-cask "cursor"
-cask "zed"
 cask "google-chrome"
 
 # ── bun (not via Homebrew) ───────────────────────────────────

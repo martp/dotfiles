@@ -1,26 +1,48 @@
 {
-  // Claude Code
-  "claudeCode.initialPermissionMode": "plan",
-  "claudeCode.preferredLocation": "sidebar",
-  "claudeCode.useTerminal": false,
-
-  // Editor
-  "editor.fontSize": 11.9,
-  "editor.lineHeight": 1.6,
-  "editor.minimap.enabled": false,
-  "extensions.ignoreRecommendations": true,
-
-  // Terminal
-  "terminal.integrated.tabs.enabled": true,
-
-  // Workbench
   "window.commandCenter": false,
-  "window.zoomLevel": 0.6,
-  "workbench.activityBar.location": "hidden",
-  "workbench.colorTheme": "Experimental Dark",
+  "window.zoomLevel": 1.8,
+  "workbench.colorTheme": "GitHub Light Default",
   "workbench.editor.showTabs": "single",
   "workbench.iconTheme": "vscode-icons",
   "workbench.layoutControl.enabled": false,
   "workbench.startupEditor": "none",
-  "workbench.statusBar.visible": true
+  "editor.formatOnSave": true,
+  "editor.fontSize": 11.28,
+  "editor.formatOnPaste": true,
+  "editor.lineHeight": 1.54,
+  "editor.minimap.enabled": false,
+  "editor.snippetSuggestions": "top",
+  "editor.suggestSelection": "first",
+  "explorer.confirmDelete": false,
+  "extensions.ignoreRecommendations": true,
+  "git.blame.editorDecoration.enabled": true,
+  "git.terminalAuthentication": true,
+  "githubPullRequests.queries": [
+    {
+      "label": "My PRs · Here",
+      "query": "repo:${owner}/${repository} is:open is:pr author:@me archived:false ",
+    },
+    {
+      "label": "Waiting For Review · Here",
+      "query": "repo:${owner}/${repository} is:open is:pr user-review-requested:@me archived:false",
+    },
+    {
+      "label": "My PRs · All Repos",
+      "query": "is:open is:pr author:@me archived:false ",
+    },
+    {
+      "label": "Waiting For Review · All Repos",
+      "query": "is:open is:pr user-review-requested:@me archived:false",
+    }
+  ],
+  "terminal.integrated.tabs.enabled": true,
+  "workbench.navigationControl.enabled": false,
+  "workbench.activityBar.compact": true,
+  "window.systemColorTheme": "auto",
+  "window.autoDetectColorScheme": true,
+  "workbench.preferredDarkColorTheme": "Experimental Dark",
+  "workbench.activityBar.location": "hidden",
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "editor.accessibilitySupport": "off",
+  "workbench.preferredLightColorTheme": "Experimental Light"
 }

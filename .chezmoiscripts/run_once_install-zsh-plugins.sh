@@ -7,13 +7,13 @@ set -euo pipefail
 ZSH_DIR="$HOME/.zsh"
 mkdir -p "$ZSH_DIR"
 
-# ── you-should-use ───────────────────────────────────────────
-# Reminds you to use existing aliases when you type the full command
-YOU_SHOULD_USE="$ZSH_DIR/you-should-use"
-if [ ! -d "$YOU_SHOULD_USE" ]; then
-  echo "Installing you-should-use zsh plugin..."
-  git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$YOU_SHOULD_USE"
-  echo "  ✓ you-should-use installed"
+# ── fast-syntax-highlighting ──────────────────────────────────
+# Drop-in replacement for zsh-syntax-highlighting — faster and more features
+FSH="$ZSH_DIR/fast-syntax-highlighting"
+if [ ! -d "$FSH" ]; then
+  echo "Installing fast-syntax-highlighting zsh plugin..."
+  git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git "$FSH"
+  echo "  ✓ fast-syntax-highlighting installed"
 else
-  echo "  ✓ you-should-use already present"
+  echo "  ✓ fast-syntax-highlighting already present"
 fi

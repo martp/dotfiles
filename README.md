@@ -16,7 +16,6 @@ Martin Pritchard's dotfiles, managed with [chezmoi](https://chezmoi.io/).
 | `dot_config/starship.toml` | `~/.config/starship.toml` | Prompt config |
 | `dot_config/ghostty/config` | `~/.config/ghostty/config` | Terminal config |
 | `dot_config/gh/config.yml` | `~/.config/gh/config.yml` | GitHub CLI config |
-| `dot_config/zed/settings.json` | `~/.config/zed/settings.json` | Zed editor settings |
 | `dot_config/vscode/settings.json` | `~/.config/vscode/settings.json` | VS Code settings reference |
 | `zshrc.local.example` | — | Template for `~/.zshrc.local` (copy & fill in) |
 | `.chezmoiignore` | — | Files chezmoi will never touch |
@@ -29,7 +28,7 @@ Martin Pritchard's dotfiles, managed with [chezmoi](https://chezmoi.io/).
 ### Option A — One-liner (after pushing this repo to GitHub)
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/dotfiles/main/bootstrap.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/martp/dotfiles/main/bootstrap.sh)"
 ```
 
 ### Option B — Manual steps
