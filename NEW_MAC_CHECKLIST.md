@@ -142,6 +142,27 @@ Extensions that were installed on your old Mac (Raycast will prompt to reinstall
 
 ---
 
+## Apps to Install
+
+### App Store — re-download from your purchase history
+- [ ] Xcode *(large download ~7GB — start this first)*
+- [ ] Logic Pro Creator Studio
+- [ ] Pixelmator Pro
+- [ ] Keynote
+- [ ] Yoink
+
+### Manual downloads
+- [ ] **Adobe Lightroom** — install Creative Cloud from adobe.com, then install Lightroom from within it
+- [ ] **Claude** — claude.ai/download
+- [ ] **iLok License Manager** — pace.com
+- [ ] **UA Connect / Universal Audio** — uaudio.com
+- [ ] **Waves Central** — waves.com
+- [ ] **Arturia Software Center** — arturia.com
+
+> ⚠️ **Before wiping the old Mac:** iLok, Universal Audio, and Waves all use machine-based licensing. Deactivate/transfer licences on the old Mac first — check each app's settings for a "Deauthorise" or "Transfer" option.
+
+---
+
 ## macOS Settings (manual — not covered by bootstrap)
 
 ### Dock
